@@ -10,20 +10,21 @@ import SwiftUI
 //View для экрана со словами
 struct Words: View {
     
-    let li: [String] = ["Look up", "Work out", "1", "1"]
-    @State private var isPresentedARScreen = false
+    let verbs: [String] = ["Fall down", "Get up", "Look around", "Run away", "Sit down", "Work out", "Stand up"]
     
+    @StateObject private var viewModel = WordsViewModel()
+    @State private var isPresentedARScreen = false
     
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false ) {
                 VStack(spacing: 20) {
-                    ForEach(0..<li.count, id: \.self) { i in
+                    ForEach(verbs, id: \.self) { i in
                         
                         CustomButton(
                             model: CustomButton.Model(
                                 type: .white,
-                                title: "\(li[i])",
+                                title: "\(i)",
                                 cornerRadius: 22,
                                 showArrow: true
                             )
@@ -48,7 +49,7 @@ struct Words: View {
             .navigationTitle("Words")
             .navigationBarTitleTextColor(Color("Brown"))
             .navigationBarColor(Color("Yellow"))
-        }
+        }.accentColor(Color("Brown"))
     }
 }
 

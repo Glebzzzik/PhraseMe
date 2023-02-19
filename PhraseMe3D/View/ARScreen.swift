@@ -14,7 +14,7 @@ import FocusEntity
 struct ARScreen : View {
     
     @State private var isPlacementEnabled = false
-    @State private var selectedModel = "robot_walk_idle.usdz"//: String?
+    @State private var selectedModel = "sitdown.usdz"//: String?
     @State private var modelComfiredForPlacement: String?
     
     var models = ["tv_retro", "robot_walk_idle"]
@@ -23,7 +23,7 @@ struct ARScreen : View {
         let navBarAppearance = UINavigationController()
         navBarAppearance.navigationBar.largeTitleTextAttributes=[NSAttributedString.Key.foregroundColor:
         UIColor.white]
-        
+        UINavigationBar.appearance().tintColor = .black
     }
     
     
@@ -60,7 +60,7 @@ struct ARScreen : View {
                 
                 let fileName = modelName + ".usdz"
                 
-                let modelEntity = try! ModelEntity.load(named: "toy_drummer_idle")
+                let modelEntity = try! ModelEntity.load(named: "sitdown.usdz")
                 
                 let anchorEntity = AnchorEntity(plane: .any)
                 anchorEntity.addChild(modelEntity)

@@ -10,3 +10,9 @@ import Foundation
 struct PhrasalVerb: Hashable {
     var word, wordId: String
 }
+
+class globalVerb: ObservableObject {
+    @Published var verb = ""
+    @Published var verbID = ""
+}
+

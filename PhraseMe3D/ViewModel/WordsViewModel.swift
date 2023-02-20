@@ -19,7 +19,7 @@ class WordsViewModel: ObservableObject{
     }
     
     func getWords(con: ((_ result: String, _ error: String) -> Void )? = nil) {
-        let url = "http://localhost:8080/api/get_all_models"
+        let url = "http://95.165.105.133:1221/api/get_all_models"
         
         AF.request(url, method: .get).validate().response() { response in
             switch response.result{

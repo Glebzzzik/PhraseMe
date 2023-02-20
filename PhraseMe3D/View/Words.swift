@@ -10,8 +10,9 @@ import SwiftUI
 //View для экрана со словами
 struct Words: View {
     
-    let verbs: [String] = ["Fall down", "Get up", "Look around", "Run away", "Sit down", "Work out", "Stand up"]
+    var ud = UserDefaults()
     
+    @StateObject var selectedVerb = globalVerb()
     @StateObject private var viewModel = WordsViewModel()
     @State private var isPresentedARScreen = false
     
@@ -19,18 +20,22 @@ struct Words: View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false ) {
                 VStack(spacing: 20) {
-                    ForEach(verbs, id: \.self) { i in
+                    ForEach(viewModel.verbs, id: \.self) { i in
                         
                         CustomButton(
                             model: CustomButton.Model(
                                 type: .white,
-                                title: "\(i)",
+                                title: "\(i.word)",
                                 cornerRadius: 22,
                                 showArrow: true
                             )
                         ) {
+                            print("Debug: \(i)")
+                            selectedVerb.verb = "\(i.word)"
+                            selectedVerb.verbID = "\(i.wordId)"
                             // действие по тапу на кнопку
-                            
+                            print("Debug \(selectedVerb.verb)")
+                            ud.set("\(selectedVerb.verb)", forKey: "verb")
                             isPresentedARScreen.toggle()
                         }
                         .background {

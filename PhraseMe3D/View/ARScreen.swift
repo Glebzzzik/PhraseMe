@@ -12,6 +12,7 @@ import FocusEntity
 
 //View для экрана с дополненной реальностью
 struct ARScreen : View {
+    @StateObject var selectedVerb = globalVerb()
     
     @State private var isPlacementEnabled = false
     @State private var selectedModel = "sitdown.usdz"//: String?
@@ -60,7 +61,9 @@ struct ARScreen : View {
                 
                 let fileName = modelName + ".usdz"
                 
-                let modelEntity = try! ModelEntity.load(named: "sitdown.usdz")
+                
+                
+                let modelEntity = try! ModelEntity.load(named: "\(UserDefaults().value(forKey: "verb")!).usdz")
                 
                 let anchorEntity = AnchorEntity(plane: .any)
                 anchorEntity.addChild(modelEntity)
